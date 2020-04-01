@@ -1,0 +1,33 @@
+@import 'shared/header.css';
+@import 'shared/log.css';
+@import 'shared/fonts.css';
+@import 'shared/messages.css';
+@import 'shared/dashboard.css';
+@import 'shared/master.css';
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: 'Montserrat';
+    font-size: 20px;
+    color: var(--color-text-light)
+
+}
+
+body {
+    background: linear-gradient(to right,
+    var(--color-background-dark), var(--color-background-light));
+}
+
+.container-header {
+    margin: auto;
+    margin-bottom: 3rem;
+}
+
+.container {
+    margin: 0 2rem;
+}
+

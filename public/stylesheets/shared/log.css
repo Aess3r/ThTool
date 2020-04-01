@@ -1,0 +1,55 @@
+@import 'master.css';
+
+:root {
+    --color-background_log-btn-light: hsl(var(--color-base-hue), 20%, 40%);
+    --color-background_log-btn-dark: hsl(var(--color-base-hue), 30%, 40%);
+}
+
+.login-main {
+    margin: auto;
+    max-width: 300px;
+    background-color: hsl(160, 51%, 50%, 0.1);
+    border-radius: 10px;
+    padding-left: 10px;
+}
+.login-header {
+    text-align: center;
+}
+
+.login-main input {
+    width: 280px;
+}
+
+.login-sub {
+    text-align: left;
+}
+
+.btn {
+    background: linear-gradient(to right,
+    var(--color-background_log-btn-dark), var(--color-background_log-btn-light));
+    border-radius: 10px;
+    color: var(--color-text-light);
+    font-weight: bold;
+    height: 30px;
+    font-size: 18px;
+}
+
+.btn:hover {
+    border-color: chartreuse;
+    color: chartreuse;
+    cursor: pointer;
+}
+
+.log_btn {
+    text-align: right;
+    padding-top: 5px;
+    padding-right: 20px;
+}
+
+.log-footer {
+    text-align: center;
+}
+
+.log-rows {
+    padding-bottom: 5px;
+}

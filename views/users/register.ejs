@@ -1,0 +1,67 @@
+<div class="login-main">
+   <h1 class="login-header">Register</h1>
+    <%- include ('../partials/messages') %>
+    <form action="/users/register" method="POST">
+        <div class="log-rows">
+            <label for="name">Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-control"
+                    placeholder="Enter Name"
+                    value="<%= typeof name !='undefined' ? name : '' %>"
+                    />
+        </div>
+        <div class="log-rows">
+            <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Enter Email @nokiantyres.com"
+                    value="<%= typeof email !='undefined' ? email : '' %>"
+                    />
+        </div>
+        <div class="log-rows">
+            <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="Create Password"
+                    value="<%= typeof email !='undefined' ? password : '' %>"
+                    />
+        </div>
+        <div class="log-rows">
+            <label for="password2">Confirm Password</label>
+                <input
+                    type="password"
+                    id="password2"
+                    name="password2"
+                    class="form-control"
+                    placeholder="Create Password"
+                    value="<%= typeof email !='undefined' ? password2 : '' %>"
+                    />
+        </div>
+        <div class="log-rows">
+            <label for="userlvl">userlvl</label>
+                <input type="hidden"
+                    type="userlvl"
+                    id="userlvl"
+                    name="userlvl"
+                    class="form-control"
+                    placeholder="Create uselvl"
+                    value="1"
+                />
+        </div>
+        <div class="log_btn">
+            <button class="btn" type="submit">Register</button>
+        </div>
+    </form>
+    <div class="log-footer">
+    <p>Have an account?<a href="/users/login">Login</a></p>
+</div>
+</div>

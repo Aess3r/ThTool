@@ -1,0 +1,25 @@
+<header class="header-main">
+    <nav class="header-nav">
+        <a class="header-title" href="/dash">Mykanban</a>
+        <ul>
+        <% if(userlvl === '5') { %> 
+         
+            <li class="header-link"><a href="/dash">Kanban</a></li>
+            <li class="header-link"><a href="/setup">Setup</a></li>
+            <li class="header-link"><a href="/admin">Admin</a></li>
+
+        <% } else if(userlvl === '3') { %> 
+            <li class="header-link"><a href="#">Kanban</a></li>
+            <li class="header-link"><a href="#">Setup</a></li>
+        <% } else { %>
+            <li class="header-link"><a href="#">Kanban</a></li>
+        <% } %>  
+        </ul>
+        <div class="header-user">
+            <%= name  %>
+        <br>
+        <a href="/users/logout">Logout</a>
+        </div>
+        
+    </nav>
+</header>

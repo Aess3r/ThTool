@@ -1,0 +1,8 @@
+.error-msg {
+    color: red;
+    text-align: center;
+}
+
+.success-msg {
+    color: greenyellow;
+}
