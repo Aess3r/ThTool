@@ -11,9 +11,29 @@ router.get('/login', (req, res) => {
     res.render('users/Login')
 })
 
+
+// Login Handle
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', {
+        successRedirect: '/dash',
+        failureRedirect: '/users/login',
+        failureFlash: true
+    })(req, res, next)
+})
+
+// Logout Handle
+router.get('/logout', (req, res) => {
+    req.logout()
+    
+    req.flash('success_msg', 'You are logged out')
+    res.redirect('/users/login')
+    //req.session.destroy()
+})
+
+
 // Register Page
 router.get('/register', (req, res) => {
-    res.render('users/register')
+        res.render('users/register')
 })
 
 // Register Handle
@@ -35,12 +55,13 @@ router.post('/register', (req, res) =>{
     }
 
     if(errors.length > 0) {
-        res.render('register', {
+        res.render('users/register', {
             errors,
             name,
             email,
             password,
-            password2
+            password2,
+            userlvl
         })
     } else {
         // Validation passed
@@ -48,8 +69,8 @@ router.post('/register', (req, res) =>{
         .then(user => {
             if(user) {
                 //User exists
-                errors.push({ msg: 'Email is already registered' })
-                res.render('register', {
+                errors.push({ msg: 'Kyseinen sähköposti on jo lisätty' })
+                res.render('users/register', {
                     errors,
                     name,
                     email,
@@ -61,7 +82,8 @@ router.post('/register', (req, res) =>{
                     name,
                     email,
                     password,
-                    userlvl
+                    userlvl,
+            
                 })
                 
                 //Hash Password
@@ -72,7 +94,7 @@ router.post('/register', (req, res) =>{
                     //Save user
                     newUser.save()
                     .then(user => {
-                        req.flash('success_msg', 'You are now registered and can log in')
+                        req.flash('success_msg', 'Käyttäjä lisätty')
                         res.redirect('/users/login')
                     })
                     .catch(err => console.log(err))
@@ -81,24 +103,6 @@ router.post('/register', (req, res) =>{
             }
         })
     }
-})
-
-// Login Handle
-router.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
-        successRedirect: '/dash',
-        failureRedirect: '/users/login',
-        failureFlash: true
-    })(req, res, next)
-})
-
-// Logout Handle
-router.get('/logout', (req, res) => {
-    req.logout()
-    
-    req.flash('success_msg', 'You are logged out')
-    res.redirect('/users/login')
-    //req.session.destroy()
 })
 
 module.exports = router

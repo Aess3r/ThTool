@@ -4,6 +4,7 @@
 @import 'shared/messages.css';
 @import 'shared/dashboard.css';
 @import 'shared/master.css';
+@import 'shared/admin.css';
 
 
 *, *::before, *::after {
@@ -29,5 +30,31 @@ body {
 
 .container {
     margin: 0 2rem;
+    width: 95%;
+}
+
+.container-split {
+   display: flex;
+   flex-wrap: wrap;
+   width: 100%;
+   height: 1000px;
+ 
+}
+.split-left {
+    display: flex;
+    text-align: right;
+    width: 25%;
+}
+
+.split-right {
+    display: flex;
+    text-align: right;
+}
+
+
+.split-left label {
+    float: left;
+    padding-right: 1rem;
+
 }
 

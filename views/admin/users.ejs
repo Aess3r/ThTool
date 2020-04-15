@@ -1,11 +1,89 @@
 <div class="container-header">
     <%- include ('../partials/header') %> 
     <div class="container">
-        <% users.forEach(user => { %>
-            <div><%= user.name %></div>
-        <% }) %>  
+        <%- include ('../partials/messages') %> 
+        <div class="container-split">
+            <div class="split-left">
+                <form action="/admin" method="POST">
+                    <div class="log-rows">
+                        <label for="user">Nimi</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            class="form-control"
+                            placeholder="Lisää käyttäjän nimi"
+                            value="">
+                    </div>
+                    <div class="log-rows">
+                        <label for="email">Sähköposti osoite</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="Lisää sähköposti osoite"
+                            value="">
+                    </div>
+                    <div class="log-rows">
+                        <label for="lvl">Käyttäjän oikeudet</label>
+                        <select id="lvl" class="form-control" name="lvl">
+                            <option value=""></option>
+                            <option value="1">Perus käyttäjä (asettaja)</option>
+                            <option value="3">Moderaattori</option>
+                            <option value="5">Admin</option>
+                        </select>
+                    </div>
+                    <div class="log-rows" hidden>
+                        <label for="password">Salasana</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="form-control"
+                            placeholder=""
+                            value="123456">
+                     </div>        
+                    
+                    <a href="/dash">Peruuta</a>
+                    <button type="submit">Tallenna</button>
+                </form>
+            </div>
+            <label>Käyttäjät</label>
+            <div class="split-right">
+                <div class="container">
+                    <% users.forEach(user => { %>
+                    <div class="user-card">
+                        <table class="user-table">
+                            <tr>
+                                <td>Käyttäjä nimi: <%= user.name %></td>
+                            </tr>
+                            <tr>
+                                <td>Sähköposti: <%= user.email %></td>
+                            </tr>
+                            <tr>
+                                <% if(user.userlvl === '5') { %> 
+
+                                    <td>Käyttäjän oikeudet: Admin</td>
+                     
+                                <% } else if(user.userlvl === '3') { %> 
+                                    
+                                    <td>Käyttäjän oikeudet: Moderaattori</td>
+
+                                <% } else { %>
+                                   
+                                    <td>Käyttäjän oikeudet: Asettaja</td>
+
+                                <% } %>  
+                            </tr>
+                            
+                        </table>
+                        <button>Poista</button>
+                  </div>    
+                <% })%>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
-
-
-

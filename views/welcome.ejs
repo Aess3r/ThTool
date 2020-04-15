@@ -2,9 +2,13 @@
     <div>
         <div>
             <h1>Create an account or login</h1>
-            <a href="/users/register" class="button">Register</a>
             <br>
             <a href="/users/login">Login</a>
+        </div>
+        <div class="container">
+            <% bladders.forEach(bladder => { %> 
+                <div><%= bladder.itemcode %> </div>
+            <% }) %> 
         </div>
     </div>
 </div>
