@@ -4,24 +4,40 @@
     font-weight: bold;
     padding: 1rem;    
 }
-.split-left button {
-    text-decoration: none;
-    font-size: large;
-    color: var(--color-text-button);
-    font-weight: bold;
-    padding: 0.3rem;
-    border-radius: 10px; 
-}
-.split-left button:hover {
-    text-decoration: none;
-    font-size: large;
-    color: var(--color-text-button-hover);
-    font-weight: bold;
-    padding: 0.3rem;
-    border-radius: 10px; 
-    cursor: pointer;
-}
+
 .dash-message {
     display: flex;
     width: 100%;
+}
+
+.reset {
+    width: 150px;
+}
+
+.container-split-dash {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 1000px;
+  }
+.split-left-dash {
+    width: 25%;
+    min-width: 200px;
+    background-color: blanchedalmond;
+     
+}
+
+.split-right-dash {
+    display: flex;
+     width: 70%; 
+    background-color: blue;
+}
+.split-right-dash td {
+    width: 200px;
+}
+.new_ {
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-weight: bold;
+    font-size: x-large;
 }

@@ -3,15 +3,19 @@ const router = express.Router()
 const { ensureAuthenticated } = require('../config/auth')
 const Bladders = require('../models/Bladders')
 const User = require('../models/User')
-
+const Moment = require('moment')
 
 // Dashboard
 router.get('/',ensureAuthenticated, async (req, res) => {
     try { 
-        const user = await User.find({})  
+        const user = await User.find({}) 
+        const bladders = await Bladders.find({}) 
         res.render('dashboard/dash', {
             userlvl: req.user.userlvl,
-            name: req.user.name
+            name: req.user.name,
+            bladders: bladders,
+            user: user,
+            moment: Moment
         })
     } catch {
         res.redirect('/users/login')

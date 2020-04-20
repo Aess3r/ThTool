@@ -38,8 +38,8 @@ body {
    flex-wrap: wrap;
    width: 100%;
    height: 1000px;
+ }
  
-}
 .split-left {
     display: flex;
     text-align: right;

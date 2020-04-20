@@ -1,10 +1,13 @@
 <div class="container-header">
     <%- include ('../partials/header') %> 
     <div class="container">
-        <%- include ('../partials/messages') %> 
+</div>
+        
         <div class="container-split">
             <div class="split-left">
                 <form action="/admin" method="POST">
+                    <h2>Lisää uusi käyttäjä</h2>
+                    <%- include ('../partials/messages') %> 
                     <div class="log-rows">
                         <label for="user">Nimi</label>
                         <input
@@ -49,41 +52,47 @@
                     <button type="submit">Tallenna</button>
                 </form>
             </div>
-            <label>Käyttäjät</label>
+
             <div class="split-right">
                 <div class="container">
-                    <% users.forEach(user => { %>
                     <div class="user-card">
                         <table class="user-table">
                             <tr>
-                                <td>Käyttäjä nimi: <%= user.name %></td>
+                                <td class="name">Nimi</td>
+                                <td class="email">Sähköposti</td>
+                                <td class="luokka">Luokka</td>
+                                <td class="muokkaa"></td>
                             </tr>
+                            <% users.forEach(user => { %>
                             <tr>
-                                <td>Sähköposti: <%= user.email %></td>
+                                <td class="name"><%= user.name %></td>
+                                <td class="email"><%= user.email %></td>
+                                    <% if(user.userlvl === '5') { %> 
+    
+                                        <td class="luokka">Admin</td>
+                         
+                                    <% } else if(user.userlvl === '3') { %> 
+                                        
+                                        <td class="luokka">Moderaattori</td>
+    
+                                    <% } else { %>
+                                       
+                                        <td class="luokka">Asettaja</td>
+    
+                                    <% } %>  
+                                </td>
+                                <td class="muokkaa">
+                                    <a href="/admin/<%= user.id %>/edit"><button>Muokkaa</button></a>
+                                </td>
                             </tr>
-                            <tr>
-                                <% if(user.userlvl === '5') { %> 
-
-                                    <td>Käyttäjän oikeudet: Admin</td>
-                     
-                                <% } else if(user.userlvl === '3') { %> 
-                                    
-                                    <td>Käyttäjän oikeudet: Moderaattori</td>
-
-                                <% } else { %>
-                                   
-                                    <td>Käyttäjän oikeudet: Asettaja</td>
-
-                                <% } %>  
-                            </tr>
-                            
+                            <% })%>
                         </table>
-                        <button>Poista</button>
+                         
                   </div>    
-                <% })%>
+                
                 </div>
             </div>
         </div>
 
     </div>
-</div>
+

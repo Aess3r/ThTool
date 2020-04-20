@@ -1,11 +1,59 @@
 <div class="container-header">
     <%- include ('../partials/header') %> 
-    <div class="container">
-        <h1>Dashboard</h1>
-        <a href="/dash/new">Tee uusi tyyny</a>
- 
-    </div>
 </div>
+    <div class="container">
+        <div class="container-split-dash">
+        <div class="split-left-dash">
+            <h2>Haku kriteerit</h2>
+            <form action="">
+                <label for="">T-koodi</label>
+                <input type="text"><br>
+            </form>
+            <a href="/dash/new" class="new_">Kirjaa uusi paketti</a>
+        </div>
+        <div class="split-right-dash">
+            <table>
+                <tr>
+                    <td>
+                        T-koodi
+                    </td>
+                    <td>
+                        Linja
+                    </td>
+                    <td>
+                        Sijainti
+                    </td>
+                    <td>
+                        Kasattu
+                    </td>
+                </tr>
+                <% bladders.forEach(bladder => { %>
+                <tr>
+                    <td>
+                        <%= bladder.itemcode %> 
+                    </td>
+                    <td>
+                        <% if(bladder.line === '1') { %>
+                            P11-P14  <% bladder.line %>
+                        <% } else { %>
+                            P15-P53
+                        <% } %>
+                    </td>
+                    <td>
+                        <% if(bladder.stored ==='prod') { %>
+                            Tuotannossa
+                        <% } else { %>
+                            <%= bladder.stored %> 
+                        <% } %>
+                        
+                    </td>
+                    <td>
+                        <%= moment(bladder.createdate).format('D.MM.YYYY'); %>
+                    </td>
+                </tr>
+                <% }) %>
+             </table>
+        </div>
 
-
+    </div>
 
