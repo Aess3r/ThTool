@@ -24,11 +24,9 @@ router.get('/',ensureAuthenticated, async (req, res) => {
 
 // Edit User
 router.get('/:id/edit', async (req, res) => {
-   
-    try{
-        const user = await User.findById(req.params.id)
-        const users = await User.find({})
-        
+    const user = await User.findById(req.params.id)
+    const users = await User.find({}) 
+    try{        
         res.render('admin/edituser', {
             userlvl: req.user.userlvl,
             name: req.user.name,
@@ -162,7 +160,7 @@ router.delete('/:id', async (req, res) => {
 })
 
 
-// Register Handle
+// Create User
 router.post('/',ensureAuthenticated, async (req, res) => {
     const users = await User.find({})
     const { name, email, password, lvl } = req.body
@@ -182,7 +180,7 @@ router.post('/',ensureAuthenticated, async (req, res) => {
         res.render('admin/users', {
             errors,
             name: req.user.name,
-            userlvl: req.user.userlv,
+            userlvl: req.user.userlvl,
             users: users
             
         })

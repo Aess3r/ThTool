@@ -19,7 +19,7 @@ const BladderSchema = new Schema({
     },
     createdate: {
         type: Date,
-        default: Date.now
+        default: Date.now()
     },
     unique: {
         type: String,
@@ -31,11 +31,15 @@ const BladderSchema = new Schema({
     },
     updatedate: {
         type: Date,
-        default: Date.now
+        default: Date.now()
     },
     userid: {
         type: String
+    },
+    versio: {
+        type: String
     }
+
 })
 
 const Bladders = mongoose.model('Bladders', BladderSchema)

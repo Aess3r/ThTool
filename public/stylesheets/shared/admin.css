@@ -7,25 +7,6 @@
     margin: 1rem;
 }
 
-.split-left button {
-    text-decoration: none;
-    font-size: large;
-    color: var(--color-text-button);
-    font-weight: bold;
-    padding: 0.1rem;
-    margin: 0.1rem;
-    border-radius: 10px;
-    width: 150px;
-}
-.split-left button:hover {
-    text-decoration: none;
-    font-size: large;
-    color: var(--color-text-button-hover);
-    font-weight: bold;
-    padding: 0.1rem;
-    border-radius: 10px; 
-    cursor: pointer;
-}
 
 .name {
     width: 250px;
@@ -42,24 +23,5 @@
 
 .muokkaa {
     width: 80px;
-    text-align: center;
- 
-}
-
-.muokkaa button {
-    text-decoration: none;
-    color: var(--color-text-button);
-    font-weight: bold;
-    padding: 0.1rem;
-    margin: 0.1rem;
-    border-radius: 10px;
-}
-
-.muokkaa button:hover {
-    text-decoration: none;
-    color: var(--color-text-button-hover);
-    font-weight: bold;
-    padding: 0.1rem;
-    border-radius: 10px; 
-    cursor: pointer;
+    text-align: center; 
 }

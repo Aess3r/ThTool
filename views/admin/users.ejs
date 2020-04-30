@@ -1,14 +1,17 @@
 <div class="container-header">
     <%- include ('../partials/header') %> 
-    <div class="container">
+
 </div>
-        
+<div class="container">
         <div class="container-split">
             <div class="split-left">
                 <form action="/admin" method="POST">
                     <h2>Lisää uusi käyttäjä</h2>
-                    <%- include ('../partials/messages') %> 
-                    <div class="log-rows">
+                    
+                    <div class="messages">
+                        <%- include ('../partials/messages') %> 
+                    </div>
+                    <div class="form-row">
                         <label for="user">Nimi</label>
                         <input
                             type="text"
@@ -18,8 +21,8 @@
                             placeholder="Lisää käyttäjän nimi"
                             value="">
                     </div>
-                    <div class="log-rows">
-                        <label for="email">Sähköposti osoite</label>
+                    <div class="form-row">
+                        <label for="email">Sähköposti</label>
                         <input
                             type="email"
                             id="email"
@@ -28,8 +31,8 @@
                             placeholder="Lisää sähköposti osoite"
                             value="">
                     </div>
-                    <div class="log-rows">
-                        <label for="lvl">Käyttäjän oikeudet</label>
+                    <div class="form-row">
+                        <label for="lvl">Käyttäjä luokka</label>
                         <select id="lvl" class="form-control" name="lvl">
                             <option value=""></option>
                             <option value="1">Perus käyttäjä (asettaja)</option>
@@ -37,7 +40,7 @@
                             <option value="5">Admin</option>
                         </select>
                     </div>
-                    <div class="log-rows" hidden>
+                    <div class="form-row" hidden>
                         <label for="password">Salasana</label>
                         <input
                             type="password"
@@ -47,9 +50,10 @@
                             placeholder=""
                             value="123456">
                      </div>        
-                    
-                    <a href="/dash">Peruuta</a>
+                    <div class="form-row form-row-links">
+                    <a href="/dash">Takaisin</a>
                     <button type="submit">Tallenna</button>
+                    </div>
                 </form>
             </div>
 
@@ -81,7 +85,7 @@
     
                                     <% } %>  
                                 </td>
-                                <td class="muokkaa">
+                                <td class="user-btn muokkaa">
                                     <a href="/admin/<%= user.id %>/edit"><button>Muokkaa</button></a>
                                 </td>
                             </tr>

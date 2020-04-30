@@ -5,6 +5,7 @@
 @import 'shared/dashboard.css';
 @import 'shared/master.css';
 @import 'shared/admin.css';
+@import 'shared/buttons.css';
 
 
 *, *::before, *::after {
@@ -15,7 +16,6 @@
     font-family: 'Montserrat';
     font-size: 20px;
     color: var(--color-text-light)
-
 }
 
 body {
@@ -41,14 +41,24 @@ body {
  }
  
 .split-left {
-    display: flex;
-    text-align: right;
-    width: 25%;
+    display: flexbox;
+    text-align: left;
+    width: 400px;
+}
+
+.split-left h2 {
+    text-align: center;
+}
+
+.split-left input {
+    float: right;
+    width: 200px;
 }
 
 .split-right {
     display: flex;
     text-align: right;
+    width: 70%;
 }
 
 
@@ -56,5 +66,31 @@ body {
     float: left;
     padding-right: 1rem;
 
+}
+
+.messages {
+    height: 40px;
+    font-weight: bolder;
+}
+
+.form-row{
+    display: flexbox;
+    height: 60px;
+    padding: 1rem;
+
+}
+
+.form-row input {
+    float: right;    
+    width: 180px;
+}
+
+.form-row select {
+    float: right;
+    height: 20px;
+    width: 180px;
+}
+.form-row button {
+    float: right;
 }
 

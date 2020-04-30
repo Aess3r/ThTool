@@ -3,9 +3,11 @@
     <div class="container">  
         <div class="container-split">
             <div class="split-left">
-                <h2>Lisää uusi paketti</h2>
-                <div class="messages"><%- include ('../partials/messages') %></div>
-                <form action="/dash" method="POST">
+                <form action="/dash/<%= bladder.id %>/upd?_method=PUT" method="POST">
+                    <h2>Lisää uusi paketti</h2>
+                    <div class="messages">
+                        <%- include ('../partials/messages') %>
+                    </div>
                     <div class="form-row">
                         <label for="itemcode">Tuote koodi</label>
                         <input
@@ -13,8 +15,8 @@
                             id="itemcode"
                             name="itemcode"
                             class="form-control"
-                            placeholder="Tuote numer"
-                            value="">
+                            placeholder=""
+                            value="<%= bladder.itemcode %>">
                     </div>
                     <div class="form-row">
                         <label for="bladder">Tyyny malli *</label>
@@ -24,28 +26,18 @@
                             name="bladder"
                             class="form-control"
                             placeholder="Tyyny malli"
-                            value="">
-                    </div>
-                    <div class="form-row" hidden>
-                        <label for="updatedate">päivitetty</label>
-                        <input
-                            type="date"
-                            id="updatedate"
-                            name="updatedate"
-                            class="form-control"
-                            placeholder=""
-                            value="">
+                            value="<%= bladder.bladder %>">
                     </div>
                     <div class="form-row">
-                        <label for="qty">Paistettu</label>
+                        <label for="qtyupd">Paistettu</label>
                         <input
                             type="value"
-                            id="qty"
-                            name="qty"
+                            id="qtyupd"
+                            name="qtyupd"
                             class="form-control"
                             placeholder="Montako kierrosta Paistettu"
-                            value=""
-                            default="0">
+                            value="<%= bladder.qty %>"
+                            default="">
                     </div>
                     <div class="form-row">
                         <label for="unique">1-Laipan Nro</label>
@@ -55,7 +47,7 @@
                             name="unique"
                             class="form-control"
                             placeholder="1-Laipan Nro"
-                            value="">
+                            value="<%= bladder.unique %>">
                     </div>
                     <div class="form-row">
                         <label for="versio">Laipan versio</label>
@@ -65,12 +57,17 @@
                             name="versio"
                             class="form-control"
                             placeholder="Lisää laipan versio Nro"
-                            value="">
+                            value="<%= bladder.versio %>">
                     </div>
                     <div class="form-row">
                         <label for="line">Linja *</label>
-                        <select id="line" name="line" class="form-control">
-                            <option value=""></option>
+                        <select id="line" name="line" class="form-control" >
+                            <option value="<%= bladder.line %>"><% if(bladder.line === '1') { %>
+                                P11-P14
+                                <% } else { %>
+                                P15-P53
+                                <% } %>
+                                </option>
                             <option value="1">P11-P14</option>
                             <option value="2">P15-P53</option>
                         </select>
@@ -78,7 +75,7 @@
                     <div class="form-row">
                         <label for="stored">Sijainti *</label>
                         <select id="stored" name="stored" class="form-control">
-                            <option value=""></option>
+                            <option value="<%= bladder.stored %>"><%= bladder.stored %></option>
                             <% storedb.forEach(storedb => { %> 
                             <option value="<%= storedb.stored %>"><%= storedb.stored %></option>
                         <% }) %>
@@ -86,10 +83,11 @@
                         
                     </div>
                     <div class="form-row form-row-links">
-                        <button type="submit">Tallenna</button>                    
                         <a href="/dash">Peruuta</a>
+                        <button type="submit">Tallenna</button>
                     </div>
                 </form>
+                
             </div>
             <div class="split-right">
                 <table>
@@ -120,8 +118,8 @@
                             Päivitetty
                         </td>
                     </tr>
-                    <% bladders.forEach(bladder => { %>
-                    <tr>
+
+                    <tr class="form-row">
                         <td class="unique">
                             <%= bladder.unique %> 
                         </td>
@@ -155,8 +153,14 @@
                         <td class="date">
                             <%= moment(bladder.updatedate).format('D.MM.YYYY') %> 
                         </td>
+                        <td>
+                            <div style="text-align: center;" class="form-row-links muokkaa">
+                                <%- include('../partials/deletebladder',
+                                { url: `/dash/${bladder.id}` }) %>
+                            </div>
+                        </td>
                     </tr>
-                    <% }) %>
+       
                 </table>
             </div>
 

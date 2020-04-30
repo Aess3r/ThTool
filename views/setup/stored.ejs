@@ -3,13 +3,42 @@
 </div>
 
 <div class="container">
+
     <div class="container-split">
+
         <div class="split-left">
-            <div class="form-row form-row-links">
-                <a href="/setup/storectr"><H3>Lisää varasto paikka</H3></a>
-            </div>
-        </div>       
-        
+            <form action="/setup" method="POST">
+                <h2>Lisää uusi sijainti</h2>
+                
+                <div class="messages">
+                    <%- include ('../partials/messages') %>
+                </div>
+                <div class="form-row">
+                <label>Lisää sijainti</label>
+                <input
+                    type="text"
+                    id="stored"
+                    name="stored"
+                    class="form-control"
+                    placeholder=""
+                    value="">
+                </div>
+                <div class="form-row">
+                    <label>Alueella</label>
+                    <input
+                        type="text"
+                        id="zone"
+                        name="zone"
+                        class="form-control"
+                        placeholder=""
+                        value="">
+                    </div>
+                    <div class="form-row form-row-links">
+                        <a href="/setup">Takaisin</a>
+                        <button type="submit">Tallenna</button>
+                    </div>
+            </form>
+        </div>   
         <div class="split-right">
             <table>
                 <tr>
@@ -54,19 +83,6 @@
                 <% storedb.forEach(store => { %>
                 <tr>
                     <td><% if(store.zone === '3') { %>
-                        <%= store.stored %>
-                        <% } %>
-                    </td>
-                </tr>
-                <% }) %>
-            </table>
-            <table>
-                <tr>
-                    <td>Zone 4</td>
-                </tr>
-                <% storedb.forEach(store => { %>
-                <tr>
-                    <td><% if(store.zone === '4') { %>
                         <%= store.stored %>
                         <% } %>
                     </td>

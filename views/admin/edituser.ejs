@@ -5,10 +5,12 @@
         <div class="container-split">
             <div class="split-left">
                 <% if(user.userlvl === '5') {%>
-                <form action="/admin/<%= user.id %>/upd?_method=PUT " method="POST">
-                    <h2>Muokkaa käyttäjän tietoja</h2>
+                <form action="/admin/<%= user.id %>/upd?_method=PUT" method="POST">
+                    <h2>Käyttäjän tiedot</h2>
+                    <div class="messages">
                         <%- include ('../partials/messages') %> 
-                            <div class="log-rows">
+                    </div>
+                            <div class="form-row">
                                 <label for="user">Nimi</label>
                                   <input disabled
                                         type="text"
@@ -18,8 +20,8 @@
                                         placeholder="<%= user.name %>"
                                         value="">
                             </div>
-                            <div class="log-rows">
-                                <label for="email">Sähköposti osoite</label>
+                            <div class="form-row">
+                                <label for="email">Sähköposti</label>
                                     <input disabled
                                         type="email"
                                         id="email"
@@ -28,7 +30,7 @@
                                         placeholder="<%= user.email %>"
                                         value="">
                             </div>
-                            <div class="log-rows" hidden>
+                            <div class="form-row" hidden>
                                 <label for="userlvl"></label>
                                     <input disabled
                                         type="userlvl"
@@ -38,7 +40,7 @@
                                         placeholder="<%= user.userlvl %>"
                                         value="">
                             </div>
-                            <div class="log-rows">
+                            <div class="form-row">
                                     <form action="/admin/<%= user.id %>/upd?_method=PUT" method="POST">
                                         <label for="password">Salasana</label>
                                         <input
@@ -49,82 +51,98 @@
                                             placeholder="Syötä uusi salasana"
                                             value="">
                                             <br>
-                                        <a href="/admin">Peruuta</a>
-                                        <button type="submit">Tallenna</button>
+                                            <br>
+                                            <div class="form-row-links">
+                                                <a href="/admin">Peruuta</a>
+                                                <button type="submit">Tallenna</button>
+                                            </div>                                        
                                     </form>
                                 </div>
                             <% } else { %>
                                 <form action="/admin/<%= user.id %>?_method=PUT " method="POST">
-                                    <h2>Muokkaa käyttäjän tietoja</h2>
+                                    <h2>Käyttäjän tiedot</h2>
+                                    
+                                    <div class="messages">
                                         <%- include ('../partials/messages') %> 
-                                            <div class="log-rows">
-                                                <label for="user">Nimi</label>
-                                                  <input disabled
-                                                        type="text"
-                                                        id="name"
-                                                        name="name"
-                                                        class="form-control"
-                                                        placeholder="<%= user.name %>"
-                                                        value="">
-                                            </div>
-                                            <div class="log-rows">
-                                                <label for="email">Sähköposti osoite</label>
-                                                    <input disabled
-                                                        type="email"
-                                                        id="email"
-                                                        name="email"
-                                                        class="form-control"
-                                                        placeholder="<%= user.email %>"
-                                                        value="">
-                                            </div>
-                                <div class="log-rows">
-                                    <label for="lvl">Käyttäjän oikeudet</label>
-                                        <select id="lvl" class="form-control" name="lvl">
-                                            <option value=""></option>
-                                            <option value="1">Perus käyttäjä (asettaja)</option>
-                                            <option value="3">Moderaattori</option>
-                                            <option value="5">Admin</option>
-                                        </select>
-                                        <div class="log-rows">
+                                    </div>
+                                        <div class="form-row">
+                                            <label for="user">Nimi</label>
+                                                <input disabled
+                                                    type="text"
+                                                    id="name"
+                                                    name="name"
+                                                    class="form-control"
+                                                    placeholder="<%= user.name %>"
+                                                    value="">
+                                        </div>
+                                        <div class="form-row">
+                                            <label for="email">Sähköposti</label>
+                                                <input disabled
+                                                    type="email"
+                                                    id="email"
+                                                    name="email"
+                                                    class="form-control"
+                                                    placeholder="<%= user.email %>"
+                                                    value="">
+                                        </div>
+                                        <div class="form-row">
+                                            <label for="lvl">Käyttäjä luokka</label>
+                                                <select id="lvl" class="form-control" name="lvl">
+                                                    <option value=""></option>
+                                                    <option value="1">Perus käyttäjä (asettaja)</option>
+                                                    <option value="3">Moderaattori</option>
+                                                    <option value="5">Admin</option>
+                                                </select>
+                                        </div>
+                                        <div class="form-row form-row-links">
                                             <a href="/admin">Peruuta</a>
-                                            <button type="submit">Päivitä</button>
+                                            <button type="submit">Tallenna muutokset</button>
                                         </div>
-                                        <div class="log-rows">
-                                            <form action="/admin/<%= user.id %>/reset?_method=PUT" method="POST">
-                                                <button type="submit" class="reset">Nollaa salasana</button>
-                                            </form>        
-                                                    <%- include('../partials/deleteForm',
-                                                    { url: `/admin/${user.id}` }) %> 
-                                        </div>
-                                </div>
- 
-                </form>
-                <% } %>   
-            </div>
-        <div class="split-right">
-            <div class="container">
-                <div class="user-card">
-                    <table class="user-table">
-                        <tr>
-                            <td><%= user.name %></td>
-                        </tr>
-                        <tr>
-                            <td><%= user.email %></td>
-                        </tr>
-                        <tr>
-                            <% if(user.userlvl === '5') { %> 
-                                <td>Käyttäjän oikeudet: Admin</td>
-                            <% } else if(user.userlvl === '3') { %> 
-                                <td>Käyttäjän oikeudet: Moderaattori</td>
-                            <% } else { %>
-                                <td>Käyttäjän oikeudet: Asettaja</td>
-                            <% } %>  
-                        </tr>
-                        </table>
-
-                  </div>    
+                                </form>
+                            <% } %>   
                 </div>
-            </div>
+                <div class="split-right">
+                    <div class="container">
+                         <div class="user-card">
+                            <table class="user-table">
+                                <tr>
+                                    <td><%= user.name %></td>
+                                </tr>
+                                <tr>
+                                    <td><%= user.email %></td>
+                                </tr>
+                                <tr>
+                            
+                                <% if(user.userlvl === '5') { %> 
+                                    <td>Käyttäjän oikeudet: Admin</td>
+                                <% } else if(user.userlvl === '3') { %> 
+                                    <td>Käyttäjän oikeudet: Moderaattori</td>
+                                <% } else { %>
+                                    <td>Käyttäjän oikeudet: Asettaja</td>
+                                <% } %>  
+                                <% if(user.userlvl === '5') { %> 
+
+                                <% } else { %>
+                                    <td class="user-btn muokkaa">
+                                
+                                        <form action="/admin/<%= user.id %>/reset?_method=PUT" method="POST">
+                                            <button type="submit" class="reset">Nollaa salasana</button>
+                                        </form> 
+
+                                        <%- include('../partials/deleteForm',
+                                        { url: `/admin/${user.id}` }) %>
+                        
+                                
+                                <%} %>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </div>    
+                    </div>
+                </div>
 
     </div>
+</div>  
 

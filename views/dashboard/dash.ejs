@@ -1,59 +1,103 @@
 <div class="container-header">
     <%- include ('../partials/header') %> 
+
 </div>
     <div class="container">
-        <div class="container-split-dash">
-        <div class="split-left-dash">
-            <h2>Haku kriteerit</h2>
-            <form action="">
-                <label for="">T-koodi</label>
-                <input type="text"><br>
-            </form>
-            <a href="/dash/new" class="new_">Kirjaa uusi paketti</a>
-        </div>
-        <div class="split-right-dash">
-            <table>
-                <tr>
-                    <td>
-                        T-koodi
-                    </td>
-                    <td>
-                        Linja
-                    </td>
-                    <td>
-                        Sijainti
-                    </td>
-                    <td>
-                        Kasattu
-                    </td>
-                </tr>
-                <% bladders.forEach(bladder => { %>
-                <tr>
-                    <td>
-                        <%= bladder.itemcode %> 
-                    </td>
-                    <td>
-                        <% if(bladder.line === '1') { %>
-                            P11-P14  <% bladder.line %>
-                        <% } else { %>
-                            P15-P53
-                        <% } %>
-                    </td>
-                    <td>
-                        <% if(bladder.stored ==='prod') { %>
-                            Tuotannossa
-                        <% } else { %>
-                            <%= bladder.stored %> 
-                        <% } %>
+        <div class="container-split">
+            <div class="split-left">
+                <div class="messages">
+                    <%- include ('../partials/messages') %>
+                </div>
+                <form action="/dash" method="GET">
+                    <div class="form-row">
+                        <label>T-koodi:</label>
+                        <input type="text" name="itemcode" value="<%= searchOptions.itemcode %>">
+                        <br>
+                        <button type="submit">Hae</button> 
+                    </div>
+                    <div class="form-row">
+                        <label>1-Laipan Nro:</label>
+                        <input type="text" name="unique" value="<%= searchOptions.unique %>">
+                        <br>
+                        <button type="submit">Hae</button>
                         
-                    </td>
-                    <td>
-                        <%= moment(bladder.createdate).format('D.MM.YYYY'); %>
-                    </td>
-                </tr>
-                <% }) %>
-             </table>
+                    </div>
+                    
+                    <div class="form-row form-row-links">
+                        <a href="/dash/new">Kirjaa uusi paketti</a>
+                    </div>
+                </form>
+                <br>
+
+            </div>
+            <div class="split-right">
+               
+                <table>                    
+                    <tr>
+                        <td class="unique table-header">
+                            1-Laippa
+                        </td>
+                        <td class="versio table-header">
+                            Versio
+                        </td>
+                        <td class="line table-header">
+                            Linja
+                        </td>
+                        <td class="item table-header">
+                            Tuote
+                        </td>
+                        <td class="store table-header">
+                            Sijainti
+                        </td>
+                        <td class="qty table-header">
+                            Paistomäärä
+                        </td>
+                        <td class="date table-header">
+                            Kasattu
+                        </td>
+                        <td class="date table-header">
+                            Päivitetty
+                        </td>
+                    </tr>
+                    <% bladders.forEach(bladder => { %>
+                    <tr>
+                        <td class="unique form-row-links-dash">
+                            <a href="/dash/<%= bladder.id %>"><%= bladder.unique %></a> 
+                        </td>
+                        <td class="versio">
+                            <%= bladder.versio %> 
+                        </td>
+                        <td class="line"> 
+                            <% if(bladder.line === '1') { %>
+                                P11-P14  <% bladder.line %>
+                            <% } else { %>
+                                P15-P53
+                            <% } %>
+                        </td>
+                        <td class="item">
+                            <%= bladder.itemcode %> 
+                        </td>
+                        <td class="store">
+                            <% if(bladder.stored ==='prod') { %>
+                                Tuotannossa
+                            <% } else { %>
+                                <%= bladder.stored %> 
+                            <% } %>
+                            
+                        </td>
+                        <td class="qty">
+                            <%= bladder.qty %> 
+                        </td>
+                        <td class="date">
+                            <%= moment(bladder.createdate).format('D.MM.YYYY'); %>
+                        </td>
+                        <td class="date">
+                            <%= moment(bladder.updatedate).format('D.MM.YYYY') %> 
+                        </td>
+                    </tr>
+                    <% }) %>
+                </table>
+            </div>
+
         </div>
-
-    </div>
-
+    </div>  

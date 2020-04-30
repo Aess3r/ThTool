@@ -1,0 +1,64 @@
+
+.form-row button {
+    text-decoration: none;
+    color: var(--color-text-button);;
+
+    width: auto;
+}
+.form-row button:hover {
+    text-decoration: none;
+    color: var(--color-text-button-hover);
+
+    cursor: pointer;
+}
+
+.muokkaa button {
+    text-decoration: none;
+    color: var(--color-text-button);
+
+  
+  
+}
+
+.muokkaa button:hover {
+    text-decoration: none;
+    color: var(--color-text-button-hover);
+
+    cursor: pointer;
+}
+
+.form-row-links{
+    text-align: left;
+    text-decoration: none;
+}
+
+.form-row-links a {
+    text-decoration: none;
+    color: var(--color-text-link);
+    font-weight: bold;
+}
+
+.form-row-links a:hover {
+    text-decoration: none;
+    color: var(--color-text-link-hover);
+    font-weight: bolder;
+}
+.user-btn{
+    text-align: right;
+    width: 100%;
+}
+.user-btn button {
+    width: 200px;
+}
+
+.form-row-links-dash a {
+    text-decoration: none;
+    color: var(--color-text-link);
+    
+}
+
+.form-row-links-dash a:hover {
+    text-decoration: none;
+    color: var(--color-text-link-hover);
+    font-weight: bold;
+}
