@@ -10,7 +10,7 @@ const BladderSchema = new Schema({
         required:true
     },
     qty: {
-        type: String,
+        type: Number,
         required: false
     },
     line: {

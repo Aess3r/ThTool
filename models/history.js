@@ -15,6 +15,14 @@ const HistorySchema = new Schema({
     },
     destroydate: {
         type: Date
+    },
+    cause: {
+        type: String,
+        required: true
+    },
+    note: {
+        type: String,
+        required: false
     }
 
 

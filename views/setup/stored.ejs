@@ -14,11 +14,11 @@
                     <%- include ('../partials/messages') %>
                 </div>
                 <div class="form-row">
-                <label>Lisää sijainti</label>
+                <label>Paikan nimi</label>
                 <input
                     type="text"
-                    id="stored"
-                    name="stored"
+                    id="paikka"
+                    name="paikka"
                     class="form-control"
                     placeholder=""
                     value="">
@@ -26,7 +26,7 @@
                 <div class="form-row">
                     <label>Alueella</label>
                     <input
-                        type="text"
+                        type="number"
                         id="zone"
                         name="zone"
                         class="form-control"
@@ -47,31 +47,27 @@
                 <% storedb.forEach(store => { %>
                 <tr>
                     
-                    <td><% if(store.zone === '1') { %>
-                        <%= store.stored %>
+                    <td class="form-row-links"><% if(store.zone === 1 ) { %>
+                       <a href="/setup/storectr/<%= store.id %>" ><%= store.stored %></a>
+                       
                         <% } %>
                     </td>
-
-                    
                 </tr>
                 <% }) %>
                 
-            </table>
+            </table>  
             <table>
                 <tr>
-
                     <td>Zone 2</td>
-
                 </tr>
                 <% storedb.forEach(store => { %>
                 <tr>
                     
-                    <td><% if(store.zone === '2') { %>
-                        <%= store.stored %>
+                    <td class="form-row-links"><% if(store.zone === 2 ) { %>
+                       <a href="/setup/storectr/<%= store.id %>" ><%= store.stored %></a>
+                       
                         <% } %>
                     </td>
-
-                    
                 </tr>
                 <% }) %>
                 
@@ -82,12 +78,31 @@
                 </tr>
                 <% storedb.forEach(store => { %>
                 <tr>
-                    <td><% if(store.zone === '3') { %>
-                        <%= store.stored %>
+                    
+                    <td class="form-row-links"><% if(store.zone === 3 ) { %>
+                       <a href="/setup/storectr/<%= store.id %>" ><%= store.stored %></a>
+                       
                         <% } %>
                     </td>
                 </tr>
                 <% }) %>
+                
+            </table>
+            <table>
+                <tr>
+                    <td>Zone 4</td>
+                </tr>
+                <% storedb.forEach(store => { %>
+                <tr>
+                    
+                    <td class="form-row-links"><% if(store.zone === 4 ) { %>
+                       <a href="/setup/storectr/<%= store.id %>" ><%= store.stored %></a>
+                       
+                        <% } %>
+                    </td>
+                </tr>
+                <% }) %>
+                
             </table>
 
         </div>

@@ -7,7 +7,7 @@ const StorecontrolSchema = new Schema({
         required: true
     },
     zone: {
-        type: String,
+        type: Number,
         required: true
     }
 

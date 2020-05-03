@@ -148,15 +148,14 @@
                             <%= bladder.qty %> 
                         </td>
                         <td class="date">
-                            <%= moment(bladder.createdate).format('D.MM.YYYY'); %>
+                            <%= moment(bladder.createdate).format('DD.MM.YYYY'); %>
                         </td>
                         <td class="date">
-                            <%= moment(bladder.updatedate).format('D.MM.YYYY') %> 
+                            <%= moment(bladder.updatedate).format('DD.MM.YYYY') %> 
                         </td>
                         <td>
-                            <div style="text-align: center;" class="form-row-links muokkaa">
-                                <%- include('../partials/deletebladder',
-                                { url: `/dash/${bladder.id}` }) %>
+                            <div class="form-row-links">
+                            <a href="/dash/<%= bladder.id %>/delete/">Poista</a>
                             </div>
                         </td>
                     </tr>

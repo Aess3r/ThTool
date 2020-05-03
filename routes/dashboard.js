@@ -5,6 +5,7 @@ const Bladders = require('../models/Bladders')
 const User = require('../models/User')
 const Stored = require('../models/Storecontrol')
 const History = require('../models/history')
+const Cause = require('../models/Cause')
 const Moment = require('moment')
 
 // Dashboard
@@ -129,8 +130,21 @@ router.get('/:id', async (req, res) => {
 
 //Edit Bladder
 
-router.get('/:id/edit', (req, res) => {
-    res.send('Edit Bladder' + req.params.id)
+router.get('/:id/delete', async (req, res) => {
+    const bladder = await Bladders.findById(req.params.id)
+    const storedb = await Stored.find({})
+    causedb = await Cause.find({})
+    try {
+        res.render('dashboard/dashdelete', {
+            userlvl: req.user.userlvl,
+            name: req.user.name,
+            bladder: bladder,
+            storedb: storedb,
+            moment: Moment
+        })
+    } catch {
+        res.send('Show Bladder' + req.params.id)
+    }
 })
 
 // Update Bladder
@@ -157,21 +171,25 @@ router.put('/:id/upd', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     let bladders
+    let { reason , note } = req.body
     bladders = await Bladders.findById(req.params.id)
+    const causedb = await Cause.find({})
     try {
-        
+
         const newHistory = new History({
             bladder: bladders.bladder,
             qty: bladders.qty,
             createdate: bladders.createdate,
-            destroydate: Date.now()
+            destroydate: Date.now(),
+            cause: reason,
+            note: note
         })
 
-        await newHistory.save()
-        await bladders.remove()
-        req.flash('success_msg', 'Paketti poistettu ja määrät siirretty historia dataan')
-        res.redirect('/dash')
-        console.log(newHistory)
+       await newHistory.save()
+       await bladders.remove()
+       req.flash('success_msg', 'Paketti poistettu ja määrät siirretty historia dataan')
+       res.redirect('/dash')
+       console.log(newHistory)
     } catch {
         res.send('Update Bladder' + req.params.id)
     }

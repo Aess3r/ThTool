@@ -1,0 +1,45 @@
+<div class="container-header">
+    <%- include ('../partials/header') %> 
+</div>
+
+<div class="container">
+
+    <div class="container-split">
+
+        <div class="split-left">
+            <form action="/setup/causectr" method="POST">
+                <h2>Lisää uusi syy</h2>
+                
+                <div class="messages">
+                    <%- include ('../partials/messages') %>
+                </div>
+                <div class="form-row">
+                    <label>Lisää syy</label>
+                <input
+                    type="text"
+                    id="caused"
+                    name="caused"
+                    class="form-control"
+                    placeholder=""
+                    value="">
+                </div>
+                    <div class="form-row form-row-links">
+                        <a href="/setup">Takaisin</a>
+                        <button type="submit">Tallenna</button>
+                    </div>
+            </form>
+        </div>   
+        <div class="split-right">
+            <table>
+                <% causedb.forEach(causedb => { %>
+                   <tr>
+                       <td>
+                        <div class="form-row form-row-links"><%= causedb.cause %></div>
+                       </td>
+                   </tr> 
+                <% }) %>
+            </table> 
+        </div>
+    </div>
+</div>  
+

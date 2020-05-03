@@ -1,0 +1,118 @@
+<div class="container-header">
+    <%- include ('../partials/header') %> 
+</div>
+
+<div class="container">
+
+    <div class="container-split">
+
+        <div class="split-left">
+            <form action="/setup/storectr/<%= editstore.id %>/upd?_method=PUT" method="POST">
+                <h2>Muokkaa tietoja</h2>
+                <div class="messages">
+                    <%- include ('../partials/messages') %>
+                </div>
+                <div class="form-row">
+                <label>Paikan nimi</label>
+                <input 
+                    type="text"
+                    id="paikka"
+                    name="paikka"
+                    class="form-control"
+                    placeholder=""
+                    value="<%= editstore.stored %>">
+                </div>
+                <div class="form-row">
+                    <label>Alueella</label>
+                    <input
+                        type="number"
+                        id="zone"
+                        name="zone"
+                        class="form-control"
+                        placeholder=""
+                        value="<%= editstore.zone %>">
+                    </div>
+                    <div class="form-row form-row-links">
+                        <a href="/setup/storectr">Takaisin</a>
+                        <button type="submit">Tallenna</button>
+                    </div>
+            </form>
+            <div class="form-row form-row-links">
+             <form action="/setup/<%= editstore.id %>?_method=DELETE" method="POST" class="delete">
+                <button type="submit">Poista</button>
+            </form>
+            </div>  
+        </div>   
+        <div class="split-right">
+            <table>
+                <tr>
+                    <td>Zone 1</td>
+                </tr>
+                <% stored.forEach(store => { %>
+                <tr>                    
+                    <td class="form-row-table form-row-links">
+                 
+                            <% if(store.zone === 1 ) { %>
+                                <a href="/setup/storectr/<%= store.id %>"><%= store.stored %></a>
+                            <% } %>
+                  
+                    </td>
+                </tr>
+                <% }) %>
+                
+            </table>
+            <table>
+                <tr>
+                    <td>Zone 2</td>
+                </tr>
+                <% stored.forEach(store => { %>
+                <tr>                    
+                    <td class="form-row-table form-row-links">
+                 
+                            <% if(store.zone === 2 ) { %>
+                                <a href="/setup/storectr/<%= store.id %>" ><%= store.stored %></a>
+                            <% } %>
+                  
+                    </td>
+                </tr>
+                <% }) %>
+                
+            </table>
+            <table>
+                <tr>
+                    <td>Zone 3</td>
+                </tr>
+                <% stored.forEach(store => { %>
+                <tr>                    
+                    <td class="form-row-table form-row-links">
+                 
+                            <% if(store.zone === 3 ) { %>
+                                <a href="/setup/storectr/<%= store.id %>" ><%= store.stored %></a>
+                            <% } %>
+                  
+                    </td>
+                </tr>
+                <% }) %>
+                
+            </table>
+            <table>
+                <tr>
+                    <td>Zone 4</td>
+                </tr>
+                <% stored.forEach(store => { %>
+                <tr>                    
+                    <td class="form-row-table form-row-links">
+                 
+                            <% if(store.zone === 4 ) { %>
+                                <a href="/setup/storectr/<%= store.id %>" ><%= store.stored %></a>
+                            <% } %>
+                  
+                    </td>
+                </tr>
+                <% }) %>
+                
+            </table>
+        </div>
+    </div>
+</div>  
+

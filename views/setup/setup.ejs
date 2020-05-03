@@ -8,71 +8,13 @@
             <div class="form-row form-row-links">
                 <a href="/setup/storectr"><H3>Lisää varasto paikka</H3></a>
             </div>
+            <div class="form-row form-row-links">
+                <a href="/setup/causectr"><H3>Lisää purku syy</H3></a>
+            </div>
         </div>       
         
         <div class="split-right">
-            <table>
-                <tr>
-                    <td>Zone 1</td>
-                </tr>
-                <% storedb.forEach(store => { %>
-                <tr>
-                    
-                    <td><% if(store.zone === '1') { %>
-                        <%= store.stored %>
-                        <% } %>
-                    </td>
-
-                    
-                </tr>
-                <% }) %>
-                
-            </table>
-            <table>
-                <tr>
-
-                    <td>Zone 2</td>
-
-                </tr>
-                <% storedb.forEach(store => { %>
-                <tr>
-                    
-                    <td><% if(store.zone === '2') { %>
-                        <%= store.stored %>
-                        <% } %>
-                    </td>
-
-                    
-                </tr>
-                <% }) %>
-                
-            </table>
-            <table>
-                <tr>
-                    <td>Zone 3</td>
-                </tr>
-                <% storedb.forEach(store => { %>
-                <tr>
-                    <td><% if(store.zone === '3') { %>
-                        <%= store.stored %>
-                        <% } %>
-                    </td>
-                </tr>
-                <% }) %>
-            </table>
-            <table>
-                <tr>
-                    <td>Zone 4</td>
-                </tr>
-                <% storedb.forEach(store => { %>
-                <tr>
-                    <td><% if(store.zone === '4') { %>
-                        <%= store.stored %>
-                        <% } %>
-                    </td>
-                </tr>
-                <% }) %>
-            </table>
+           
 
         </div>
     </div>

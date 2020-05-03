@@ -1,0 +1,45 @@
+<div class="container-header">
+    <%- include ('../partials/header') %> 
+    <div class="container">  
+        <h1>Olet poistamassa seuraavaa tyyny pakettia</h1>
+        <div class="container-split">
+            <div class="split-left">
+                
+                <div class="form-row">
+                    1-Laipan Nro: <%= bladder.unique %>
+                    <br>
+                    Versio Nro: <%= bladder.versio %>
+                    <br>
+                    Tyyny: <%= bladder.bladder %>
+                    <br>
+                    Paistettu: <%= bladder.qty %>
+                    <br>
+                    Aikaväli: <%= moment(bladder.createdate).format('DD.MM.YYYY') %> - <%= moment(bladder.destroydate).format('DD.MM.YYYY') %> 
+                </div>
+              
+            </div>
+            <div class="split-right">
+               <form action="/dash/<%= bladder.id %>?_method=DELETE" method="POST" class="delete">
+                    <div class="form-row">
+                        <label for="cause">Purkamisen syy</label>
+                    </div>
+                    <div class="form-row">
+                        <select name="reason" id="reason">
+                            <% causedb.forEach(causedb => { %>  
+                                <option value="<%= causedb.cause %>"><%= causedb.cause %> </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="note">Huomiot</label>
+                    </div>
+                            <textarea name="note" id="note" cols="30" rows="10"></textarea>
+
+                    <br>
+                        <button type="submit">Poista</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>  
